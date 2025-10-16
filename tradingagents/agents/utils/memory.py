@@ -1,15 +1,28 @@
 import chromadb
 from chromadb.config import Settings
 from openai import OpenAI
+import os
 
 
 class FinancialSituationMemory:
     def __init__(self, name, config):
-        if config["backend_url"] == "http://localhost:11434/v1":
-            self.embedding = "nomic-embed-text"
+        # Use CloudRu embedding model if CloudRu provider is configured
+        # Otherwise fall back to local Ollama
+        if config.get("llm_provider", "").lower() == "cloudru":
+            # Use CloudRu embedding model - Qwen3-Embedding is lightweight and efficient
+            self.embedding = "Qwen/Qwen3-Embedding-0.6B"
+            self.client = OpenAI(
+                base_url=config["backend_url"],
+                api_key=os.getenv("OPENAI_API_KEY", "")
+            )
         else:
-            self.embedding = "text-embedding-3-small"
-        self.client = OpenAI(base_url=config["backend_url"])
+            # Fall back to local Ollama for other providers
+            self.embedding = "nomic-embed-text"
+            self.client = OpenAI(
+                base_url="http://localhost:11434/v1",
+                api_key="ollama"  # Ollama doesn't need a real API key
+            )
+        
         self.chroma_client = chromadb.Client(Settings(allow_reset=True))
         self.situation_collection = self.chroma_client.create_collection(name=name)
 

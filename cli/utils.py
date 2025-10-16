@@ -152,6 +152,21 @@ def select_shallow_thinking_agent(provider) -> str:
         "ollama": [
             ("llama3.1 local", "llama3.1"),
             ("llama3.2 local", "llama3.2"),
+        ],
+        "cloudru": [
+                    ("GLM-4.6", "zai-org/GLM-4.6"),
+        ("GigaChat-2 Max", "GigaChat/GigaChat-2-Max"),
+        ("GPT-OSS-120B", "openai/gpt-oss-120b"),
+        ("Qwen3 235B A22B Instruct 2507", "Qwen/Qwen3-235B-A22B-Instruct-2507"),
+        ("Qwen3 Coder 480B A35B Instruct", "Qwen/Qwen3-Coder-480B-A35B-Instruct"),
+        ("Qwen3 Next 80B A3B Instruct", "Qwen/Qwen3-Next-80B-A3B-Instruct"),
+        ("QwQ-32B", "Qwen/QwQ-32B"),
+        ("Qwen2.5 Coder 32B Instruct", "Qwen/Qwen2.5-Coder-32B-Instruct"),
+        ("DeepSeek R1 Distill Llama 70B", "deepseek-ai/DeepSeek-R1-Distill-Llama-70B"),
+        ("Llama 3.3 70B Instruct", "meta-llama/Llama-3.3-70B-Instruct"),
+        ("T-lite IT 1.0", "t-tech/T-lite-it-1.0"),
+        ("T-pro IT 1.0", "t-tech/T-pro-it-1.0"),
+        ("T-pro IT 2.0", "t-tech/T-pro-it-2.0"),
         ]
     }
 
@@ -214,7 +229,22 @@ def select_deep_thinking_agent(provider) -> str:
         "ollama": [
             ("llama3.1 local", "llama3.1"),
             ("qwen3", "qwen3"),
-        ]
+        ],
+        "cloudru": [
+        ("GLM-4.6", "zai-org/GLM-4.6"),
+        ("GigaChat-2 Max", "GigaChat/GigaChat-2-Max"),
+        ("GPT-OSS-120B", "openai/gpt-oss-120b"),
+        ("Qwen3 235B A22B Instruct 2507", "Qwen/Qwen3-235B-A22B-Instruct-2507"),
+        ("Qwen3 Coder 480B A35B Instruct", "Qwen/Qwen3-Coder-480B-A35B-Instruct"),
+        ("Qwen3 Next 80B A3B Instruct", "Qwen/Qwen3-Next-80B-A3B-Instruct"),
+        ("QwQ-32B", "Qwen/QwQ-32B"),
+        ("Qwen2.5 Coder 32B Instruct", "Qwen/Qwen2.5-Coder-32B-Instruct"),
+        ("DeepSeek R1 Distill Llama 70B", "deepseek-ai/DeepSeek-R1-Distill-Llama-70B"),
+        ("Llama 3.3 70B Instruct", "meta-llama/Llama-3.3-70B-Instruct"),
+        ("T-lite IT 1.0", "t-tech/T-lite-it-1.0"),
+        ("T-pro IT 1.0", "t-tech/T-pro-it-1.0"),
+        ("T-pro IT 2.0", "t-tech/T-pro-it-2.0"),
+        ],
     }
     
     choice = questionary.select(
@@ -247,7 +277,8 @@ def select_llm_provider() -> tuple[str, str]:
         ("Anthropic", "https://api.anthropic.com/"),
         ("Google", "https://generativelanguage.googleapis.com/v1"),
         ("Openrouter", "https://openrouter.ai/api/v1"),
-        ("Ollama", "http://localhost:11434/v1"),        
+        ("Ollama", "http://localhost:11434/v1"),  
+        ("CloudRu", "https://foundation-models.api.cloud.ru/v1")      
     ]
     
     choice = questionary.select(

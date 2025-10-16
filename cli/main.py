@@ -481,8 +481,8 @@ def get_user_selections():
             "Step 6: Thinking Agents", "Select your thinking agents for analysis"
         )
     )
-    selected_shallow_thinker = select_shallow_thinking_agent(selected_llm_provider)
-    selected_deep_thinker = select_deep_thinking_agent(selected_llm_provider)
+    selected_shallow_thinker = select_shallow_thinking_agent(selected_llm_provider.lower())
+    selected_deep_thinker = select_deep_thinking_agent(selected_llm_provider.lower())
 
     return {
         "ticker": selected_ticker,
